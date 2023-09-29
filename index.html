@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <form id="form">
+        <input type="number" name="matricula" id="">
+        <input type="date" name="data" id="">
+        <input type="text" name="ocorrencia" id="">
+        <button type="submit">ENVIAR</button>
+    </form>
+
+
+</body>
+    <script>
+
+        let dadosOK = {matricula: 15, data: '01-03-2023', ocorrencia: 'FO'}
+        let formulario = document.querySelector('#form')
+
+        formulario.addEventListener('submit', evento =>{
+        evento.preventDefault();
+        
+        //const dados = new FormData(formulario);
+        //console.log(dados)
+        //const dadosEnviar = new URLSearchParams(dados);
+        //console.log(dados.get('matricula'))
+        /*
+        fetch('http://127.0.0.1:3000/registro',{
+                method: 'POST',
+                mode: 'no-cors',
+                headers:{
+                    'Content-types' : 'application/json'
+                },
+                body: JSON.stringify({
+                    matricula: dados.get('matricula'),
+                    data : dados.get('data'),
+                    ocorrencia : dados.get('ocorrencia')
+                })
+                
+            })
+            .then(res =>{
+                return res.json()})
+            .then(data => console.lo(data))
+            .catch(error => console.log(error));*/
+
+        
+
+            let _data = {matricula: 99856, data: '01-03-2023', ocorrencia: 'FO'}
+
+            fetch('http://127.0.0.1:3000/registro', {
+            method: "POST",
+            mode: 'no-cors',
+            body: JSON.stringify(_data),
+            headers: {"Content-type": "application/json; charset=UTF-8"}
+            })
+            .then(response => response.json()) 
+            .then(json => console.log(json))
+            .catch(err => console.log(err))
+
+        })
+    </script>
+</html>

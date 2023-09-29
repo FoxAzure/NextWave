@@ -3,23 +3,39 @@
 import { createRegistrotb,insertRegistro } from './controles/registros.js';
 
 import express from 'express';
+import path, { parse } from 'path'
 const app = express();
 
+//const path = require('path');
+//const router = express.Router();
+
+
+/*
+router.get('/',function(req,res){
+    res.sendFile(path.join('./index.html'));
+    //__dirname : It will resolve to your project folder.
+});
+*/
 
 
 createRegistrotb();
 
 app.get('/', function(req, res){
-    res.send('Olá mundo');
+    //res.sendFile('index.html', { root: '.'})
+    res.json({'API' : 'ok'})
 
 });
 
 
 app.post('/registro', function(req, res){
+
+    console.log("req: "+JSON.stringify(req.query))
+    console.log("res: "+JSON.stringify(res.query))
+    
     insertRegistro(req.query)
-    //console.log(req.query)
     res.json({
         "Status Code":200
+        
     })
 });
 
