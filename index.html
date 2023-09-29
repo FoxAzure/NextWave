@@ -55,10 +55,12 @@
             method: "POST",
             mode: 'no-cors',
             credentials: 'include',
-            Accept: 'application/json',
-            Authorization: 'Bearer YOUR_TOKEN',
             body: _data,
-            headers: {"Content-type": "application/json"}
+            headers: {
+                "Content-type": "application/json",
+                Accept: 'application/json',
+                Authorization: 'Bearer YOUR_TOKEN',
+            }
             })
             .then(response => response.json()) 
             .then(json => console.log(json))
