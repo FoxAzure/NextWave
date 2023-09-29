@@ -3,7 +3,8 @@
 import { createRegistrotb,insertRegistro } from './controles/registros.js';
 
 import express from 'express';
-import path, { parse } from 'path'
+//import path, { parse } from 'path'
+var cors = require('cors');
 const app = express();
 
 //const path = require('path');
@@ -38,6 +39,8 @@ app.post('/registro', function(req, res){
         
     })
 });
+
+app.use(cors())
 
 app.listen(3000, () =>{
     let data = new Date();
