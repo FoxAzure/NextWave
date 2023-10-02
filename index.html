@@ -17,17 +17,30 @@
 
 </body>
     <script>
-
+        //action="127.0.0.1:3000/registro" method="POST"
         let dadosOK = {matricula: 15, data: '01-03-2023', ocorrencia: 'FO'}
         let formulario = document.querySelector('#form')
 
         formulario.addEventListener('submit', evento =>{
         evento.preventDefault();
         
-        //const dados = new FormData(formulario);
-        //console.log(dados)
-        //const dadosEnviar = new URLSearchParams(dados);
-        //console.log(dados.get('matricula'))
+        const dados = new FormData(formulario);
+        console.log("Formdata " + dados)
+        console.log(dados.get('matricula'))
+        console.log(dados.get('data'))
+        console.log(dados.get('ocorrencia'))
+        const dadosEnviar = new URLSearchParams(dados);
+        console.log("Dados para enviar" + dadosEnviar)
+
+        fetch('http://13.59.194.215:3000/registro?' + dadosEnviar,{
+                method: 'POST',
+                mode: 'no-cors',
+                headers:{
+                    'Content-types' : 'application/json',
+                    'Access-Control-Allow-Origin' : '*'
+                }
+            })
+        
         /*
         fetch('http://127.0.0.1:3000/registro',{
                 method: 'POST',
@@ -47,21 +60,23 @@
             .then(data => console.lo(data))
             .catch(error => console.log(error));*/
 
-        
+        /*
 
             let _data = JSON.stringify({matricula: 99856, data: '01-03-2023', ocorrencia: 'FO'});
             //http://ubuntu@ec2-13-59-194-215.us-east-2.compute.amazonaws.com:3000/registro
-            fetch('13.59.194.215:3000/registro', {
+            //13.59.194.215:3000/registro
+            fetch('http://127.0.0.1:3000/registro', {
             method: "POST",
-            //mode: 'no-cors',
-            body: _data,
+            mode: 'no-cors',
             headers: {
-                "Content-type": "application/json"
-            }
+                "Content-type": "application/json",
+                'Access-Control-Allow-Origin' : '*',
+            },
+            body: _data,
             })
             .then(response => response.json()) 
             .then(json => console.log(json))
-            .catch(err => console.log(err))
+            .catch(err => console.log(err))*/
 
         })
     </script>
