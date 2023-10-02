@@ -30,3 +30,23 @@ export async function insertRegistro(registro){
         db.run('INSERT INTO tb_registros (matricula, data, ocorrencia) VALUES (?,?,?);', [registro.matricula, registro.data, registro.ocorrencia])
     })
 }
+
+export async function allregistros(){
+    return openDb().then(db=>{
+        return db.all('SELECT * FROM tb_registros')
+        .then(res => res)
+       
+    })
+}
+
+export async function idRegistros(id){
+    return openDb().then(db=>{
+        return db.all('SELECT * FROM tb_registros WHERE id=?',[id])
+    })
+}
+
+export async function matriculaRegistros(mt){
+    return openDb().then(db=>{
+        return db.all('SELECT * FROM tb_registros WHERE matricula=?',[mt])
+    })
+}
